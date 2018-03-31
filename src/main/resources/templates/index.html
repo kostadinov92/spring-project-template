@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Stomp WebSocket Example</title>
+    <meta charset="UTF-8">
+    <title>Spring Session + JDBC Demo</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
     <script src="/app.js"></script>
+
 </head>
 <body>
-<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
-    enabled. Please enable
-    Javascript and reload this page!</h2></noscript>
 <div id="main-content" class="container">
+    <div>
+
+        <form th:action="@{/logout}" method="get">
+            <input type="submit" value="Logout"/>
+        </form>
+
+    </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <form class="form-inline">
                 <div class="form-group">
                     <label for="connect">WebSocket connection:</label>
@@ -24,7 +30,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <form class="form-inline">
                 <div class="form-group">
                     <label for="name">What is your name?</label>
@@ -48,5 +54,27 @@
         </div>
     </div>
 </div>
+
+<div>
+
+    <form th:action="@{/messages}" method="post">
+        <textarea name="msg" cols="40" rows="4"></textarea>
+        <input type="submit" value="Save Session Attribute"/>
+    </form>
+
+</div>
+
+<div>
+
+    <h2>Messages</h2>
+
+    <ul th:each="m : ${messages}">
+
+        <li th:text="${m}">msg</li>
+
+    </ul>
+
+</div>
+
 </body>
 </html>

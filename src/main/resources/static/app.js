@@ -41,10 +41,7 @@ function showGreeting(message) {
 }
 
 $(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
-    $( "#connect" ).click(function() { connect(); });
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
+    $( "#connect" ).click(function(e) { e.preventDefault(); connect(); });
+    $( "#disconnect" ).click(function(e) { e.preventDefault(); disconnect(); });
+    $( "#send" ).click(function(e) { e.preventDefault(); sendName(); });
 });
